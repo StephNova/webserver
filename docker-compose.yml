@@ -1,0 +1,14 @@
+services:
+  webserv:
+    build: .
+    container_name: webserv
+    ports:
+      - "3050:8080"  # Map host port 3050 to container port 8080
+      - "9090:9090"
+    volumes:
+      # Mount www directory for live content updates during development
+      - ./www:/app/www
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+

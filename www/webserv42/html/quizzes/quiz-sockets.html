@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webserv Project - 42 School</title>
+    <link rel="stylesheet" href="/html/style.css">
+</head>
+<body>
+    	<div class="top-bar-container">
+	<div id="loginStatus" style="display: flex; align-items: center; font-size: 12px; gap: 10px; justify-content: flex-end; padding: 10px;">
+	 <span id="status"></span>  
+	<a href="/html/login.html" style="display: none;" id="loginBtn" class="button-link">Login</a>
+	<a href="/html/index.html" style="display: none;" id="logoutBtn" class="button-link">Logout</a>
+	</div>
+	</div>
+    	<script>
+		
+		function getCookie(name) {
+			const value = `; ${document.cookie}`;
+			const parts = value.split(`; ${name}=`);
+			if (parts.length === 2) return parts.pop().split(';').shift();
+			return null;
+		}
+
+		function showStatus() {
+			const loggedIn = getCookie('logged_in');
+			const statusDiv = document.getElementById('status');
+			const loginBtn = document.getElementById('loginBtn');
+			
+			if (loggedIn === 'true') {
+				statusDiv.textContent = "Logged in as {{USER}}";
+				logoutBtn.style.display = 'inline-block';
+			} else {
+				// statusDiv.textContent = "Not logged in";
+				loginBtn.style.display = 'inline-block';
+			}
+		}
+		
+		document.getElementById('logoutBtn').addEventListener('click', function() {
+			window.location.href = window.location.pathname + '?login=false';
+		});
+		
+		showStatus(); 
+	</script>
+	<nav>
+		<ul>
+			<li><a href="/index.html">Index</a></li>
+			<li><a href="/concepts.html">Concepts</a></li>
+			<li><a href="/quizzes/">Quizzes</a></li>
+		</ul>
+	</nav>
+    <header>
+        <h1>Quiz</h1>
+    </header>
+	 <main>
+        <h1>Sockets and Networking Quiz</h1>
+        <section class="quiz-section">
+            <h2>Test Your Knowledge on Sockets and Networking</h2>
+            <p>Assess your understanding of TCP/IP, socket programming, and network communication for `webserv`.</p>
+        </section>
+        <form action="/cgi-bin/quiz.py" method="post">
+            <h3>1. Which protocol provides reliable, connection-oriented communication?</h3>
+            <label><input type="radio" name="q1_sockets" value="TCP"> TCP</label><br>
+            <label><input type="radio" name="q1_sockets" value="UDP"> UDP</label><br>
+            <label><input type="radio" name="q1_sockets" value="IP"> IP</label><br>
+            <label><input type="radio" name="q1_sockets" value="ICMP"> ICMP</label><br>
+
+            <h3>2. What is the purpose of the `bind()` system call in socket programming?</h3>
+            <label><input type="radio" name="q2_sockets" value="Assigns_address"> Assigns a local address (IP and port) to a socket</label><br>
+            <label><input type="radio" name="q2_sockets" value="Establishes_connection"> Establishes a connection to a remote host</label><br>
+            <label><input type="radio" name="q2_sockets" value="Listens_for_connections"> Listens for incoming connections</label><br>
+            <label><input type="radio" name="q2_sockets" value="Sends_data"> Sends data over the socket</label><br>
+
+            <h3>3. Which system call is used by a server to wait for an incoming client connection?</h3>
+            <label><input type="radio" name="q3_sockets" value="accept"> `accept()`</label><br>
+            <label><input type="radio" name="q3_sockets" value="connect"> `connect()`</label><br>
+            <label><input type="radio" name="q3_sockets" value="send"> `send()`</label><br>
+            <label><input type="radio" name="q3_sockets" value="recv"> `recv()`</label><br>
+
+            <h3>4. What is the typical flow for a server-side TCP socket program? (Order matters)</h3>
+            <label><input type="checkbox" name="q4_sockets" value="socket"> `socket()`</label><br>
+            <label><input type="checkbox" name="q4_sockets" value="bind"> `bind()`</label><br>
+            <label><input type="checkbox" name="q4_sockets" value="listen"> `listen()`</label><br>
+            <label><input type="checkbox" name="q4_sockets" value="accept"> `accept()`</label><br>
+            <label><input type="checkbox" name="q4_sockets" value="connect"> `connect()`</label><br> <h3>5. Which of these are valid socket types? (Select all that apply)</h3>
+            <label><input type="checkbox" name="q5_sockets" value="SOCK_STREAM"> `SOCK_STREAM`</label><br>
+            <label><input type="checkbox" name="q5_sockets" value="SOCK_DGRAM"> `SOCK_DGRAM`</label><br>
+            <label><input type="checkbox" name="q5_sockets" value="SOCK_RAW"> `SOCK_RAW`</label><br>
+            <label><input type="checkbox" name="q5_sockets" value="SOCK_HTTP"> `SOCK_HTTP`</label><br>
+
+            <h3>6. What is a "port number" used for in networking?</h3>
+            <label><input type="radio" name="q6_sockets" value="Identify_device"> To uniquely identify a device on a network</label><br>
+            <label><input type="radio" name="q6_sockets" value="Identify_process"> To identify a specific process or application on a host</label><br>
+            <label><input type="radio" name="q6_sockets" value="Route_packets"> To route packets between networks</label><br>
+            <label><input type="radio" name="q6_sockets" value="Encryption"> For network data encryption</label><br>
+
+            <br><input type="submit" value="Submit Quiz">
+        </form>
+    </main>
+	<footer>
+		<p>&copy; 2025 Webserv Project</p>
+	</footer>

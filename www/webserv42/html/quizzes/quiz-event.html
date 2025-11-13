@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webserv Project - 42 School</title>
+    <link rel="stylesheet" href="/html/style.css">
+</head>
+<body>
+    	<div class="top-bar-container">
+	<div id="loginStatus" style="display: flex; align-items: center; font-size: 12px; gap: 10px; justify-content: flex-end; padding: 10px;">
+	 <span id="status"></span>  
+	<a href="/html/login.html" style="display: none;" id="loginBtn" class="button-link">Login</a>
+	<a href="/html/index.html" style="display: none;" id="logoutBtn" class="button-link">Logout</a>
+	</div>
+	</div>
+    	<script>
+		
+		function getCookie(name) {
+			const value = `; ${document.cookie}`;
+			const parts = value.split(`; ${name}=`);
+			if (parts.length === 2) return parts.pop().split(';').shift();
+			return null;
+		}
+
+		function showStatus() {
+			const loggedIn = getCookie('logged_in');
+			const statusDiv = document.getElementById('status');
+			const loginBtn = document.getElementById('loginBtn');
+			
+			if (loggedIn === 'true') {
+				statusDiv.textContent = "Logged in as {{USER}}";
+				logoutBtn.style.display = 'inline-block';
+			} else {
+				// statusDiv.textContent = "Not logged in";
+				loginBtn.style.display = 'inline-block';
+			}
+		}
+		
+		document.getElementById('logoutBtn').addEventListener('click', function() {
+			window.location.href = window.location.pathname + '?login=false';
+		});
+		
+		showStatus(); 
+	</script>
+	<nav>
+		<ul>
+			<li><a href="/index.html">Index</a></li>
+			<li><a href="/concepts.html">Concepts</a></li>
+			<li><a href="/quizzes/">Quizzes</a></li>
+		</ul>
+	</nav>
+    <header>
+        <h1>Quiz</h1>
+    </header>
+	 <main>
+        <h1>Event Handling (kqueue/poll) Quiz</h1>
+        <section class="quiz-section">
+            <h2>Test Your Knowledge on Event Handling</h2>
+            <p>Assess your understanding of I/O multiplexing with `kqueue` and `poll`, and non-blocking operations for `webserv`.</p>
+        </section>
+        <form action="/cgi-bin/quiz.py" method="post">
+            <h3>1. What is the primary benefit of using I/O multiplexing (like `kqueue` or `poll`) in a web server?</h3>
+            <label><input type="radio" name="q1" value="Handle_many_clients"> Allows a single thread/process to handle many client connections concurrently</label><br>
+            <label><input type="radio" name="q1" value="Faster_CPU"> Makes the CPU run faster</label><br>
+            <label><input type="radio" name="q1" value="Encrypt_data"> Encrypts network data automatically</label><br>
+            <label><input type="radio" name="q1" value="Reduce_memory"> Reduces total memory usage significantly</label><br>
+
+            <h3>2. What is the fundamental difference between `select()`, `poll()`, and `epoll()`/`kqueue()` regarding how they monitor file descriptors?</h3>
+            <label><input type="radio" name="q2" value="Scalability"> `epoll`/`kqueue` are edge-triggered and scalable, while `select`/`poll` are level-triggered and less scalable for many FDs.</label><br>
+            <label><input type="radio" name="q2" value="Blocking"> Only `select` is blocking; `poll` and `epoll`/`kqueue` are non-blocking.</label><br>
+            <label><input type="radio" name="q2" value="OS_support"> `select` is only for Windows, `poll` for Linux, and `epoll`/`kqueue` for macOS.</label><br>
+            <label><input type="radio" name="q2" value="Memory_usage"> They all use the same amount of memory regardless of FD count.</label><br>
+
+            <h3>3. What does it mean for a socket to be "non-blocking"?</h3>
+            <label><input type="radio" name="q3" value="No_wait"> System calls like `read()` or `write()` return immediately, even if no data is available or buffer is full.</label><br>
+            <label><input type="radio" name="q3" value="No_errors"> The socket will never produce errors.</label><br>
+            <label><input type="radio" name="q3" value="No_traffic"> The socket will not send or receive traffic.</label><br>
+            <label><input type="radio" name="q3" value="Persistent"> The connection remains open indefinitely.</label><br>
+
+            <h3>4. In `kqueue`, what kind of event is `EVFILT_READ` typically used to monitor?</h3>
+            <label><input type="radio" name="q4" value="Read_readiness"> When data is available to be read from a file descriptor.</label><br>
+            <label><input type="radio" name="q4" value="Write_readiness"> When a file descriptor is ready for writing.</label><br>
+            <label><input type="radio" name="q4" value="Error_only"> Only for errors on a file descriptor.</label><br>
+            <label><input type="radio" name="q4" value="New_connection"> For new incoming connections.</label><br>
+
+            <h3>5. Which of the following is a key advantage of `kqueue` over `poll` (and `select`) for a large number of file descriptors? (Select all that apply)</h3>
+            <label><input type="checkbox" name="q5" value="No_iterating"> Does not require iterating through all watched file descriptors on each call.</label><br>
+            <label><input type="checkbox" name="q5" value="Edge_triggered"> Supports edge-triggered notifications.</label><br>
+            <label><input type="checkbox" name="q5" value="More_efficient"> Generally more efficient and scalable for high concurrency.</label><br>
+            <label><input type="checkbox" name="q5" value="Simpler_API"> Has a much simpler API to use.</label><br>
+
+            <h3>6. True or False: You should always use blocking sockets for a multi-client web server.</h3>
+            <label><input type="radio" name="q6" value="False"> False</label><br>
+            <label><input type="radio" name="q6" value="True"> True</label><br>
+
+            <br><input type="submit" value="Submit Quiz">
+        </form>
+    </main>
+	<footer>
+		<p>&copy; 2025 Webserv Project</p>
+	</footer>

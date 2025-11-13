@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webserv Project - 42 School</title>
+    <link rel="stylesheet" href="/html/style.css">
+</head>
+<body>
+
+<body>
+	<div class="top-bar-container">
+	<div id="loginStatus" style="display: flex; align-items: center; font-size: 12px; gap: 10px; justify-content: flex-end; padding: 10px;">
+	 <span id="status"></span>  
+	<a href="/html/login.html" style="display: none;" id="loginBtn" class="button-link">Login</a>
+	<a href="/html/index.html" style="display: none;" id="logoutBtn" class="button-link">Logout</a>
+	</div>
+	</div>
+
+
+	<script>
+		
+		function getCookie(name) {
+			const value = `; ${document.cookie}`;
+			const parts = value.split(`; ${name}=`);
+			if (parts.length === 2) return parts.pop().split(';').shift();
+			return null;
+		}
+
+		function showStatus() {
+			const loggedIn = getCookie('logged_in');
+			const statusDiv = document.getElementById('status');
+			const loginBtn = document.getElementById('loginBtn');
+			
+			if (loggedIn === 'true') {
+				statusDiv.textContent = "Logged in as {{USER}}";
+				logoutBtn.style.display = 'inline-block';
+			} else {
+				// statusDiv.textContent = "Not logged in";
+				loginBtn.style.display = 'inline-block';
+			}
+		}
+		
+		document.getElementById('logoutBtn').addEventListener('click', function() {
+			window.location.href = window.location.pathname + '?login=false';
+		});
+		
+		showStatus(); 
+	</script>
+
+	<nav>
+		<ul>
+			<li><a href="/index.html">Index</a></li>
+			<li><a href="/concepts.html">Concepts</a></li>
+			<li><a href="/quizzes/">Quizzes</a></li>
+		</ul>
+	</nav>
+    <header>
+        <h1>Quizzes</h1>
+    </header>
+	<main>
+		<section class="quiz-section">
+			<h2>Test Your Knowledge</h2>
+			<p>Choose the topic to take a quiz</p>
+		</section>
+<ul class="quiz-list">
+        <li>
+            <a href="quiz-basics.html">HTTP Basics Quiz</a>
+            <p>Test your knowledge on fundamental HTTP concepts like request/response cycle, methods, and status codes.</p>
+        </li>
+        <li>
+            <a href="quiz-sockets.html">Sockets and Networking Quiz</a>
+            <p>Questions covering TCP/IP, socket programming (<code>socket()</code>, <code>bind()</code>, <code>listen()</code>, <code>accept()</code>), and network communication.</p>
+        </li>
+        <li>
+            <a href="quiz-http-parsing.html">HTTP Parsing (Request/Response) Quiz</a>
+            <p>Challenge yourself on parsing HTTP headers, body, and constructing valid HTTP responses.</p>
+        </li>
+        <li>
+            <a href="quiz-cgi.html">CGI (Common Gateway Interface) Quiz</a>
+            <p>Test your knowledge on how `webserv` interacts with external executables via CGI for dynamic content generation.</p>
+        </li>
+        <li>
+            <a href="quiz-upload.html">File Upload and Download Quiz</a>
+            <p>Topics on handling multipart form data for file uploads and serving files for download.</p>
+        </li>
+    </ul>
+	</main>
+	<footer>
+		<p>&copy; 2025 Webserv Project</p>
+	</footer>

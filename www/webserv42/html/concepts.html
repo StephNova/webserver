@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webserv Project - 42 School</title>
+    <link rel="stylesheet" href="/html/style.css">
+</head>
+<body>
+
+<body>
+	<div class="top-bar-container">
+	<div id="loginStatus" style="display: flex; align-items: center; font-size: 12px; gap: 10px; justify-content: flex-end; padding: 10px;">
+	 <span id="status"></span>  
+	<a href="/html/login.html" style="display: none;" id="loginBtn" class="button-link">Login</a>
+	<a href="/html/index.html" style="display: none;" id="logoutBtn" class="button-link">Logout</a>
+	</div>
+	</div>
+	</div>
+
+	<script>
+		
+		function getCookie(name) {
+			const value = `; ${document.cookie}`;
+			const parts = value.split(`; ${name}=`);
+			if (parts.length === 2) return parts.pop().split(';').shift();
+			return null;
+		}
+
+		function showStatus() {
+			const loggedIn = getCookie('logged_in');
+			const statusDiv = document.getElementById('status');
+			const loginBtn = document.getElementById('loginBtn');
+			
+			if (loggedIn === 'true') {
+				statusDiv.textContent = "Logged in as {{USER}}";
+				logoutBtn.style.display = 'inline-block';
+			} else {
+				// statusDiv.textContent = "Not logged in";
+				loginBtn.style.display = 'inline-block';
+			}
+		}
+		
+		document.getElementById('logoutBtn').addEventListener('click', function() {
+			window.location.href = window.location.pathname + '?login=false';
+		});
+		
+		showStatus(); 
+	</script>
+
+	<nav>
+		<ul>
+			<li><a href="/index.html">Index</a></li>
+			<li><a href="/concepts.html">Concepts</a></li>
+			<li><a href="/quizzes/">Quizzes</a></li>
+		</ul>
+	</nav>
+    <header>
+        <h1>Webserv Intro</h1>
+    </header>
+
+    <main>
+        <section class="introduction">
+            <h2>Welcome to Webserv!</h2>
+			<p>Welcome to our Webserv project — an in-depth exploration into network programming and web server development. Through this project, our team built an HTTP/1.1 compliant web server entirely from scratch. More than just a coding exercise, this project deepened our understanding of the core protocols that power the internet, taught us how to manage concurrency, handle requests and responses effectively, and implement robust error handling mechanisms.</p>
+			<p>Throughout the development process, we worked extensively with low-level socket programming, HTTP request parsing, client connection management, and serving both static files and dynamic content. Webserv pushed us to think critically about resource management, performance optimization, and scalability. We're excited to share the inner workings of our server and the valuable lessons we gained from building it!</p>
+        </section>
+
+		<section class="configuration">
+  <title>Webserv Config Guide</title>
+
+
+  <h2>Webserv Configuration Guide</h2>
+
+  <h3>General Structure</h3>
+  <p>
+    The configuration file is made up of one or more <code>server { ... }</code> blocks. Each server contains:
+  </p>
+  <ul>
+    <li>Server-level directives (e.g., <code>listen</code>, <code>host</code>, <code>root</code>)</li>
+    <li>Multiple <code>location = /path/ { ... }</code> blocks to define behavior for specific routes</li>
+  </ul>
+
+  <pre><code>server {
+    listen = 8080
+    host = 127.0.0.1
+    root = www/webserv42
+
+    location = / {
+        methods = GET
+        index = index.html
+    }
+}</code></pre>
+
+  <h3>Server Directives</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Directive</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>listen</code></td>
+        <td>Comma-separated list of ports the server listens on</td>
+      </tr>
+      <tr>
+        <td><code>host</code></td>
+        <td>IP address to bind to (e.g., 127.0.0.1 or 0.0.0.0)</td>
+      </tr>
+      <tr>
+        <td><code>name</code></td>
+        <td>Name for identifying the server</td>
+      </tr>
+      <tr>
+        <td><code>root</code></td>
+        <td>Base directory for this server's files</td>
+      </tr>
+      <tr>
+        <td><code>maxbodysize</code></td>
+        <td>Maximum request body size in bytes</td>
+      </tr>
+      <tr>
+        <td><code>limitRequestLine</code></td>
+        <td>Maximum allowed length of the HTTP request line</td>
+      </tr>
+      <tr>
+        <td><code>errorPage</code></td>
+        <td>Path to a static error page</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Location Blocks</h3>
+  <p>
+    A <code>location</code> block defines behavior for a specific URI path.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Directive</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>methods</code></td>
+        <td>Comma-separated allowed HTTP methods: GET, POST, DELETE</td>
+      </tr>
+      <tr>
+        <td><code>root</code></td>
+        <td>Overrides server root for this location</td>
+      </tr>
+      <tr>
+        <td><code>index</code></td>
+        <td>Default file served if a directory is requested</td>
+      </tr>
+      <tr>
+        <td><code>autoindex</code></td>
+        <td><code>on</code> or <code>off</code>. Shows directory listing if no index file is found</td>
+      </tr>
+      <tr>
+        <td><code>upload_dir</code></td>
+        <td>If set to <code>yes</code>, allows file uploads to this location</td>
+      </tr>
+      <tr>
+        <td><code>allowed_scripts</code></td>
+        <td>Extensions allowed to execute via CGI (e.g., .py, .php)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Formatting Rules</h3>
+  <ul>
+    <li>Each setting is written as <code>key = value</code></li>
+    <li>Values can be strings, numbers, or comma-separated lists</li>
+    <li>Use curly braces <code>{ ... }</code> to define server or location blocks</li>
+    <li>Paths in <code>location</code> should end with a <code>/</code> to represent directories</li>
+    <li>Use <code>#</code> for comments. Comments extend to the end of the line</li>
+    <li>Indentation is optional but strongly recommended for readability</li>
+  </ul>
+
+
+	<img src="../files/config-file-joke.jpeg" alt="Config file joke" width="500" height="600" class="responsive-img">
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Webserv Project</p>
+    </footer>
+</body>
+</html>

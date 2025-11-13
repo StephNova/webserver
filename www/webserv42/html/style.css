@@ -1,0 +1,389 @@
+/* ======= Global Styles ======= */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 0px 50px 50px 50px;
+    background-color: #d8f8c2;
+    color: #333;
+    line-height: 1.6;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 0;
+}
+
+p {
+    font-size: 24px;
+    margin-top: 5px;
+    color: #666;
+}
+
+p2 {
+    font-size: 18px;
+    margin-top: 5px;
+    color: #ff2084;
+}
+
+ul {
+    margin-top: 0;
+}
+
+code {
+    background-color: #eee;
+    padding: 0 4px;
+    border-radius: 4px;
+}
+
+/* ======= Header ======= */
+header {
+    padding: 1rem 0;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+.mainHeader {
+    font-size: 4em;
+}
+/* ======= Navigation ======= */
+nav {
+    overflow: hidden;
+    display: inline-block;
+    padding-top: 15px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+nav li {
+    float: left;
+}
+nav li {
+    float: left;
+}
+
+nav li a {
+    display: block;
+    color: rgb(69, 70, 83);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+nav li a {
+    display: block;
+    color: rgb(69, 70, 83);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+nav li a:hover {
+    background-color: #a8f773;
+    color: black;
+}
+
+/* ======= Main Content ======= */
+main {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ======= Introduction ======= */
+.introduction {
+    margin-bottom: 40px;
+    padding: 20px;
+    background-color: #e9f7ef;
+    border-radius: 5px;
+}
+
+.introduction h2 {
+    color: #2c3e50;
+    font-size: 2em;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.introduction p {
+    font-size: 1.1em;
+    line-height: 1.8;
+}
+
+/* ======= Concepts Section ======= */
+.concepts h2 {
+    text-align: center;
+    color: #2c3e50;
+    font-size: 2em;
+    margin-bottom: 30px;
+}
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 10px;
+}
+
+.card {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card h3 {
+    color: #3498db;
+    font-size: 1.5em;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 1em;
+    color: #555;
+}
+
+/* ======= Form Styles ======= */
+form {
+    margin-top: 30px;
+    text-align: left;
+    color: #666;
+}
+
+.formCenter {
+    text-align: center;
+}
+
+/* ======= Configuration Section ======= */
+.configuration {
+    margin: 20px 0;
+    text-align: left;
+}
+
+.configuration img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 20px auto 0;
+    display: block;
+}
+
+.configuration h3 {
+    border-bottom: 2px solid #a8f773;
+    padding-bottom: 0.3rem;
+}
+
+pre {
+    background: #046d30;
+    padding: 1rem;
+    border-radius: 8px;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 0.8rem;
+    text-align: left;
+}
+
+th {
+    background-color: #7fc351;
+    color: white;
+}
+
+/* ======= Quiz List ======= */
+.quiz-list {
+    list-style: none;
+    padding: 0;
+    max-width: 600px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.quiz-list li {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.quiz-list li:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.quiz-list a {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 1.1em;
+    font-weight: bold;
+    display: block;
+    padding: 10px 0;
+    transition: color 0.3s ease;
+}
+
+.quiz-list a:hover {
+    color: #0056b3;
+}
+
+.quiz-list p {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 5px;
+}
+
+/* ======= Containers & Boxes ======= */
+.container {
+    background-color: rgb(163, 244, 255);
+    padding: 40px;
+    border-radius: 10px;
+    display: inline-block;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    width: 50%;
+}
+
+.box {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    width: auto;
+    padding: 10px;
+    display: inline-block;
+}
+
+.top-bar-container {
+    display: flex; /* Makes it a flex container */
+    justify-content: flex-end; /* Aligns items to the start (left) of the container */
+    align-items: center; /* Vertically centers the content */
+    width: 100%; /* Ensures the bar takes full width of its parent */
+    border-bottom: 1px solid #ccc; /* Optional: separator line */
+    box-sizing: border-box; /* Include padding in the width calculation */
+}
+
+/* ======= Gallery ======= */
+#gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.gallery-item {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+}
+
+.gallery-item img {
+    width: 300px;
+    height: 380px;
+    display: block;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+#loginBtn,  #logoutBtn {
+    top: 15px;            /* distance from top */
+    right: 15px;          /* distance from right */
+    padding: 10px 20px;
+    background-color: #0a9e54;
+    color: white;
+    border: none;
+	text-decoration: none; /* Remove underline */
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    z-index: 1000;        /* stays on top */
+}
+
+/* ======= Footer ======= */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #2c3e50;
+    color: #ffffff;
+    margin-top: 40px;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.9em;
+}
+
+.responsive-img {
+    max-width: 100%; /* Ensures the image doesn't overflow its container */
+    height: auto;    /* Maintains the aspect ratio */
+}
+
+/* ======= Responsive Design ======= */
+@media (max-width: 768px) {
+    .card-container {
+        grid-template-columns: 1fr;
+    }
+
+    header h1 {
+        font-size: 1.8em;
+    }
+
+    .introduction h2,
+    .concepts h2 {
+        font-size: 1.6em;
+    }
+
+    .introduction p,
+    .card p {
+        font-size: 0.95em;
+    }
+}
+
+@media (max-width: 480px) {
+    main {
+        margin: 10px auto;
+        padding: 15px;
+    }
+
+    header h1 {
+        font-size: 1.5em;
+    }
+}

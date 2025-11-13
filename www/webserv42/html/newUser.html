@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Benutzer erstellen</title>
+	<link rel="stylesheet" href="/html/login.css">
+</head>
+<body>
+	<div class="login-container">
+		<h2>Create User</h2>
+		<form id="create-form">
+			<label for="email">E-Mail</label>
+			<input type="email" id="email" name="email" required>
+
+			<label for="username">Username</label>
+			<input type="text" id="username" name="username" required>
+
+			<label for="password">Password</label>
+			<input type="password" id="password" name="password" required>
+
+			<input type="hidden" name="source" value="create">
+			<button type="submit">Erstellen</button>
+		</form>
+	</div>
+
+	<script>
+	document.getElementById('create-form').addEventListener('submit', function(event) {
+		event.preventDefault();
+
+		const email = document.getElementById('email').value;
+		const username = document.getElementById('username').value;
+		const password = document.getElementById('password').value;
+		const authType = document.querySelector('[name="source"]').value;
+
+		const formData = new URLSearchParams();
+		formData.append('email', email);
+		formData.append('username', username);
+		formData.append('password', password);
+		formData.append('source', authType);
+
+		fetch('/{{CGI_BIN}}userAuth.py', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded',
+			},
+			body: formData.toString()
+		})
+		.then(response => response.json())
+		.then(data => {
+			if (data.status === "ok") {
+				alert("New User created: " + username);
+				window.location.href = "/login.html";
+			} else {
+				alert("Error: " + (data.message || "User creation failed."));
+			}
+		})
+		.catch(error => {
+			console.error("Send error: ", error);
+		});
+	});
+	</script>
+</body>
+</html>

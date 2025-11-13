@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webserv Project - 42 School</title>
+    <link rel="stylesheet" href="/html/style.css">
+</head>
+<body>
+    	<div class="top-bar-container">
+	<div id="loginStatus" style="display: flex; align-items: center; font-size: 12px; gap: 10px; justify-content: flex-end; padding: 10px;">
+	 <span id="status"></span>  
+	<a href="/html/login.html" style="display: none;" id="loginBtn" class="button-link">Login</a>
+	<a href="/html/index.html" style="display: none;" id="logoutBtn" class="button-link">Logout</a>
+	</div>
+	</div>
+    	<script>
+		
+		function getCookie(name) {
+			const value = `; ${document.cookie}`;
+			const parts = value.split(`; ${name}=`);
+			if (parts.length === 2) return parts.pop().split(';').shift();
+			return null;
+		}
+
+		function showStatus() {
+			const loggedIn = getCookie('logged_in');
+			const statusDiv = document.getElementById('status');
+			const loginBtn = document.getElementById('loginBtn');
+			
+			if (loggedIn === 'true') {
+				statusDiv.textContent = "Logged in as {{USER}}";
+				logoutBtn.style.display = 'inline-block';
+			} else {
+				// statusDiv.textContent = "Not logged in";
+				loginBtn.style.display = 'inline-block';
+			}
+		}
+		
+		document.getElementById('logoutBtn').addEventListener('click', function() {
+			window.location.href = window.location.pathname + '?login=false';
+		});
+		
+		showStatus(); 
+	</script>
+	<nav>
+		<ul>
+			<li><a href="/index.html">Index</a></li>
+			<li><a href="/concepts.html">Concepts</a></li>
+			<li><a href="/quizzes/">Quizzes</a></li>
+		</ul>
+	</nav>
+    <header>
+        <h1>Quiz</h1>
+    </header>
+	  <main>
+        <h1>CGI (Common Gateway Interface) Quiz</h1>
+        <section class="quiz-section">
+            <h2>Test Your Knowledge on CGI</h2>
+            <p>Test your knowledge on how `webserv` interacts with external executables via CGI for dynamic content generation.</p>
+        </section>
+        <form action="/cgi-bin/quiz.py" method="post">
+            <h3>1. What is the primary role of CGI (Common Gateway Interface)?</h3>
+            <label><input type="radio" name="q1_cgi" value="Dynamic_content"> To allow web servers to execute external programs and return their output to the client.</label><br>
+            <label><input type="radio" name="q1_cgi" value="Static_files"> To serve static HTML files efficiently.</label><br>
+            <label><input type="radio" name="q1_cgi" value="Database_management"> To manage a web server's internal database.</label><br>
+            <label><input type="radio" name="q1_cgi" value="Network_routing"> To handle network routing decisions.</label><br>
+
+            <h3>2. How does a web server typically pass environment variables to a CGI script?</h3>
+            <label><input type="radio" name="q2_cgi" value="Environment_variables"> Through standard environment variables (e.g., `REQUEST_METHOD`, `QUERY_STRING`).</label><br>
+            <label><input type="radio" name="q2_cgi" value="Command_line"> As command-line arguments to the script.</label><br>
+            <label><input type="radio" name="q2_cgi" value="HTTP_headers"> As custom HTTP headers.</label><br>
+            <label><input type="radio" name="q2_cgi" value="File_transfer"> By writing them to a temporary file for the script to read.</label><br>
+
+            <h3>3. How is the HTTP request body (e.g., for a POST request) typically passed to a CGI script?</h3>
+            <label><input type="radio" name="q3_cgi" value="Stdin"> Via the script's standard input (stdin).</label><br>
+            <label><input type="radio" name="q3_cgi" value="Argument"> As a command-line argument.</label><br>
+            <label><input type="radio" name="q3_cgi" value="File"> In a file specified by an environment variable.</label><br>
+            <label><input type="radio" name="q3_cgi" value="Header"> Within an HTTP header.</label><r>
+
+            <h3>4. What must a CGI script output to standard output (stdout) for the web server to send it back as an HTTP response?</h3>
+            <label><input type="radio" name="q4_cgi" value="HTTP_headers_body"> Valid HTTP headers followed by an empty line, then the response body.</label><br>
+            <label><input type="radio" name="q4_cgi" value="Raw_HTML"> Only raw HTML content.</label><br>
+            <label><input type="radio" name="q4_cgi" value="JSON_only"> Only JSON formatted data.</label><br>
+            <label><input type="radio" name="q4_cgi" value="Status_code_only"> Just the HTTP status code.</label><br>
+
+            <h3>5. Which of these environment variables is typically set by the web server to indicate the HTTP request method?</h3>
+            <label><input type="radio" name="q5_cgi" value="REQUEST_METHOD"> `REQUEST_METHOD`</label><br>
+            <label><input type="radio" name="q5_cgi" value="HTTP_METHOD"> `HTTP_METHOD`</label><br>
+            <label><input type="radio" name="q5_cgi" value="METHOD"> `METHOD`</label><br>
+            <label><input type="radio" name="q5_cgi" value="VERB"> `VERB`</label><br>
+
+            <h3>6. True or False: CGI scripts run within the web server's process.</h3>
+            <label><input type="radio" name="q6_cgi" value="False"> False (They typically run in separate processes spawned by the server)</label><br>
+            <label><input type="radio" name="q6_cgi" value="True"> True</label><br>
+
+            <br><input type="submit" value="Submit Quiz">
+        </form>
+    </main>
+	<footer>
+		<p>&copy; 2025 Webserv Project</p>
+	</footer>

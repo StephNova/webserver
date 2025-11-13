@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webserv Project - 42 School</title>
+    <link rel="stylesheet" href="/html/style.css">
+</head>
+
+<body>
+  <div class="top-bar-container">
+  <div id="loginStatus" style="display: flex; align-items: center; font-size: 12px; gap: 10px; justify-content: flex-end; padding: 10px;">
+   <span id="status"></span>  
+  <a href="/html/login.html" style="display: none;" id="loginBtn" class="button-link">Login</a>
+  <a href="/html/index.html" style="display: none;" id="logoutBtn" class="button-link">Logout</a>
+  </div>
+  </div>
+
+
+  <script>
+    
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+      return null;
+    }
+
+    function showStatus() {
+      const loggedIn = getCookie('logged_in');
+      const statusDiv = document.getElementById('status');
+      const loginBtn = document.getElementById('loginBtn');
+      
+      if (loggedIn === 'true') {
+        statusDiv.textContent = "Logged in as {{USER}}";
+        logoutBtn.style.display = 'inline-block';
+      } else {
+        // statusDiv.textContent = "Not logged in";
+        loginBtn.style.display = 'inline-block';
+      }
+    }
+    
+    document.getElementById('logoutBtn').addEventListener('click', function() {
+      window.location.href = window.location.pathname + '?login=false';
+    });
+    
+    showStatus(); 
+  </script>
+
+  <nav>
+    <ul>
+	<li><a href="/index.html">Gallery</a></li>
+	<li><a href="/about.html">About</a></li>
+    </ul>
+  </nav>
+    <header>
+        <h1 class="mainHeader">Hello from Back Up Server!</h1>
+		<img src="../files/no-backup-no-pity.png" alt="No back up no pity" width="500" height="600" class="responsive-img">
+    </header>
+    <main>
+      <h2>Please enter your name</h2>
+	    <form action="/{{CGI_BIN}}hello.php" method="GET" class="formCenter">
+        <input type="text" name="name" id="name">
+        <input type="submit" value="Say Hi">
+    	</form>
+ 	<br><br><br>
+        <section class="introduction">
+            <h2>Welcome to Webserv!</h2>
+            <p>Welcome to our Webserv project — an in-depth exploration into network programming and web server development. Through this project, our team built an HTTP/1.1 compliant web server entirely from scratch. More than just a coding exercise, this project deepened our understanding of the core protocols that power the internet, taught us how to manage concurrency, handle requests and responses effectively, and implement robust error handling mechanisms.</p>
+            <p>Throughout the development process, we worked extensively with low-level socket programming, HTTP request parsing, client connection management, and serving both static files and dynamic content. Webserv pushed us to think critically about resource management, performance optimization, and scalability. We're excited to share the inner workings of our server and the valuable lessons we gained from building it!</p>
+
+            <h3>Meet the Team</h3>
+            <p>This project was a collaborative effort, bringing together our diverse skills and problem-solving approaches to create a robust and functional web server.</p>
+            <img src="../files/team.jpg" alt="Webserv Project Team" class="responsive-img" style="max-width: 400px; margin-top: 15px;">
+            <p style="font-size: 0.9em; color: #666;">(Image: Our team behind the Webserv project.)</p>
+        </section>
+
+    ---
+
+        <section class="configuration">
+            <h2>Webserv Configuration: A Quick Guide</h2>
+            <p>Webserv uses a straightforward configuration file to define server behavior. This file allows you to set up multiple server blocks, each with its own listening ports, hostnames, root directories, and specific rules for different URI paths.</p>
+            <p>At its core, the configuration revolves around **`server { ... }`** blocks, which can contain directives like `listen`, `host`, `root`, `maxbodysize`, and `errorPage`. Inside these server blocks, you can define **`location = /path/ { ... }`** blocks to specify how different URIs should be handled, including allowed HTTP methods, custom roots, index files, auto-indexing, upload directories, and CGI script permissions.</p>
+            <p>Each setting is typically defined as `key = value`, and comments can be added using `#`. For a comprehensive breakdown of all available directives and detailed examples, please refer to the project's official documentation or the `concepts` page.</p>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Webserv Project</p>
+    </footer>
+</body>
+</html>
