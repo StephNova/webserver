@@ -1,4 +1,4 @@
-# Webserv project at 42 school
+# Web server from scratch, a project at 42 school
 Contributors: Stephanie (@StephNova), Chris (@Spanxx) and Henriette (@Henrizz)
 <br>
 <br>
