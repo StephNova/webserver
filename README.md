@@ -4,7 +4,7 @@ Contributors: Stephanie (@StephNova), Chris (@Spanxx) and Henriette (@Henrizz)
 <br>
 
 ## Context
-It's true that nowdays it's quite easy and fast to set up a web server using existing tools. However, the goal of this project was to build a fully functional HTTP/1.1 web server from scratch! no external frameworks, no Boost, just the standard C++98 library and UNIX system calls.
+It's true that nowadays it's quite easy and fast to set up a web server using existing tools. However, the goal of this project was to build a fully functional HTTP/1.1 web server from scratch! no external frameworks, no Boost, just the standard C++98 library and UNIX system calls.
 
 It was a great way to understand how the web actually works at a low level, from handling sockets and parsing requests to generating responses. It was also my first object-oriented programming project in C++, where I learned to design modular, maintainable code using classes, exceptions, and encapsulation.
 
@@ -24,7 +24,7 @@ We handle the following aspects:
 - html and css
 - automatically updated image gallery with javascript
 - custom error pages with the adequate error codes
-- routing per specificied location blocks
+- routing per specified location blocks
 - directory listing for directory listing (when no index page is specified in config file and autoindex is on)
 
 ## Prerequisites
